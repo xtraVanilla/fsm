@@ -6,14 +6,26 @@ describe('FiniteStateMachine', () => {
     start: {
       EVENT1: 'next',
       guards: {
-        EVENT1: () => true, // Allow the transition
-        EVENT2: () => false, // Block the transition
+        EVENT1: (currentState) => {
+          // Access currentState and make decisions
+          // For this example, we'll allow the transition if the current state is 'start'
+          return currentState === 'start';
+        },
+        EVENT2: (currentState) => {
+          // Access currentState and make decisions
+          // For this example, we'll block the transition if the current state is 'start'
+          return currentState !== 'start';
+        },
       },
     },
     next: {
       EVENT2: 'end',
       guards: {
-        EVENT2: () => true, // Allow the transition
+        EVENT2: (currentState) => {
+          // Access currentState and make decisions
+          // For this example, we'll allow the transition if the current state is 'next'
+          return currentState === 'next';
+        },
       },
     },
     end: {},
@@ -28,13 +40,13 @@ describe('FiniteStateMachine', () => {
     expect(fsm.currentState).toBe('start');
   });
 
-  it('should transition to the next state with a true guard', () => {
+  it('should transition to the next state with a guard that allows it', () => {
     fsm.start('start');
     fsm.transition('EVENT1');
     expect(fsm.currentState).toBe('next');
   });
 
-  it('should handle transitions with a false guard', () => {
+  it('should handle transitions with a guard that blocks it', () => {
     fsm.start('start');
     fsm.transition('EVENT2');
     expect(fsm.currentState).toBe('start'); // Guard should block the transition

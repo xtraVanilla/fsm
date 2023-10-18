@@ -23,7 +23,7 @@ class FiniteStateMachine {
         const transitionGuard = currentStateConfig.guards[event];
 
         if (transitionGuard) {
-          return transitionGuard();
+          return transitionGuard(this.currentState);
         }
       }
       return true;
