@@ -1,0 +1,17 @@
+{
+  "name": "fsm",
+  "version": "0.0.1",
+  "description": "A finite state machine. Inspired by xState.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "author": "Ashton Morris",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.2.2"
+  }
+}
