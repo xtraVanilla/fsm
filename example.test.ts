@@ -78,4 +78,31 @@ describe('FiniteStateMachine', () => {
     expect(fsm.currentState).toBe(null);
     // Ensure the error message is logged or handled appropriately in your code.
   });
+
+  it('should call beforeCallback', () => {
+    fsm.start('start');
+  
+    let beforeCallbackCalled = false;
+  
+    fsm.transition('EVENT1', () => {
+      beforeCallbackCalled = true;
+    });
+  
+    expect(fsm.currentState).toBe('next');
+    expect(beforeCallbackCalled).toBe(true);
+  });
+  
+  it('should call afterCallback', () => {
+    fsm.start('start');
+  
+    let afterCallbackCalled = false;
+  
+    fsm.transition('EVENT1', () => {}, () => {
+      afterCallbackCalled = true;
+    });
+  
+    expect(fsm.currentState).toBe('next');
+    expect(afterCallbackCalled).toBe(true);
+  });
+  
 });
