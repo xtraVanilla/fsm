@@ -104,3 +104,5 @@ class HierarchicalFiniteStateMachine extends FiniteStateMachine {
     }
   }
 }
+
+export default HierarchicalFiniteStateMachine;
